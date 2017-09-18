@@ -18,7 +18,9 @@ CC				= gcc
 CFLAGS				= -Wall -Wextra -Werror
 HDR				= includes/wolf3d.h
 SRCS				= srcs/main.c \
-
+				srcs/load_map.c \
+				srcs/debug.c \
+				srcs/mlx.c
 
 OBJS			= $(SRCS:.c=.o)
 
