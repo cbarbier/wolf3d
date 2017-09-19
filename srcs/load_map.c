@@ -6,50 +6,11 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 15:07:45 by cbarbier          #+#    #+#             */
-/*   Updated: 2016/12/20 17:54:46 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/19 11:07:05 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-static	unsigned int		add_int(t_w3d *e, char *ptr, int *res)
-{
-	unsigned int	index;
-	char			*tmp;
-
-	(void)e;
-	index = 0;
-	while (ptr[index] != ' ' && ptr[index])
-		index++;
-	tmp = ft_strsub(ptr, 0, index);
-	*res = ft_atoi(tmp);
-	ft_strdel(&tmp);
-	while (ptr[index] && ptr[index] == ' ')
-		index++;
-	return (index);
-}
-
-static int			*str_to_int_tab(t_w3d *e, char const *s)
-{
-	int				*res;
-	char			*ptr;
-	int				i_res;
-
-	if (!s)
-		return (0);
-	ptr = (char *)s;
-	if (!(res = (int *)ft_memalloc(e->width * sizeof(int))))
-		return (0);
-	while (*ptr && *ptr == ' ')
-		ptr++;
-	i_res = 0;
-	while (i_res < e->width)
-	{
-		ptr += add_int(e, ptr, res + i_res);
-		i_res++;
-	}
-	return (res);
-}
 
 static int			wdth(char *ptr)
 {
@@ -71,7 +32,6 @@ static int			wdth(char *ptr)
 }
 
 static int			**add_new_line(int **tab, int *l)
-
 {
 	int		len;
 	int		i;
@@ -107,7 +67,7 @@ static int			loadin_to_tab(t_w3d *e, int fd, char *line, int *i)
 			e->width = wdth(line);
 		else if (wdth(line) != e->width)
 			return (1);
-		tab = str_to_int_tab(e, line);
+		tab = ft_str_to_int_tab(line, e->width);
 		e->map = add_new_line(e->map, tab);
 		ft_strdel(&line);
 	}
@@ -115,7 +75,7 @@ static int			loadin_to_tab(t_w3d *e, int fd, char *line, int *i)
 	return (ret);
 }
 
-int				load_map(t_w3d *e)
+int					load_map(t_w3d *e)
 {
 	int		ret;
 	int		fd;
@@ -128,6 +88,7 @@ int				load_map(t_w3d *e)
 	line = 0;
 	ret = loadin_to_tab(e, fd, line, &index);
 	close(fd);
+	e->height = index;
 	if (!ret)
 		return (1);
 	if (!index)

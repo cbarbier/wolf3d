@@ -6,19 +6,20 @@
 #    By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/04 14:32:18 by cbarbier          #+#    #+#              #
-#    Updated: 2017/07/20 15:19:08 by cbarbier         ###   ########.fr        #
+#    Updated: 2017/09/19 11:14:39 by cbarbier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME				= wolf3d
+NAME			= wolf3d
 LIB				= libft/libft.a
 LIBMLX			= minilibx_macos/libmlx.a
 MLX				= -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 CC				= gcc
 CFLAGS				= -Wall -Wextra -Werror
 HDR				= includes/wolf3d.h
-SRCS				= srcs/main.c \
+SRCS 			= srcs/main.c \
 				srcs/load_map.c \
+				srcs/fr33.c \
 				srcs/debug.c \
 				srcs/mlx.c
 

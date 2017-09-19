@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/05/10 15:19:27 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/19 11:12:41 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,12 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strjoinfree(char const *s1, char const *s2);
-char			*ft_strjoinzfree(char const *s1, char const *s2, int n);
+char			*ft_strnjoinzfree(char const *s1, char const *s2, int n, int z);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
 char			**ft_strsplitif(char const *s, int (*f)(char));
 char			**ft_str_to_tab(char **tab, char *str);
+int				*ft_str_to_int_tab(char *line, int w);
 intmax_t		ft_pow(int n, unsigned int p);
 char			*ft_itoa(int n);
 char			*ft_ftoa(double n, unsigned int p);

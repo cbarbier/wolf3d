@@ -67,6 +67,7 @@ SRC  = ft_memset.c \
 	   ft_strsplit.c \
 	   ft_strsplitif.c \
 	   ft_str_to_tab.c \
+	   ft_str_to_int_tab.c \
 	   ft_pow.c \
 	   ft_itoa.c \
 	   ft_ftoa.c \
@@ -86,7 +87,7 @@ SRC  = ft_memset.c \
 	   ft_lstdelone.c \
 	   ft_lstdel.c \
 	   ft_lstadd.c \
-	   ft_lstiter.c \
+	   ft_lstany.c \
 	   ft_lstmap.c \
 	   ft_lstpushback.c \
 	   ft_lstshift.c \
@@ -104,6 +105,7 @@ SRC  = ft_memset.c \
 	   ft_printf_src/ft_printf.c \
 	   ft_printf_src/ft_fprintf.c \
 	   ft_printf_src/ft_sprintf.c \
+	   ft_printf_src/ft_asprintf.c \
 	   ft_printf_src/split_args.c \
 	   ft_printf_src/init_pf.c \
 	   ft_printf_src/arg_to_buffer.c \

@@ -6,43 +6,54 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:17:05 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/07/21 11:40:49 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/19 12:02:00 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-	
+
 static int	w3d_core(t_w3d *e)
 {
 	int		**map;
 	int		i;
 
-	if (!load_map(e))
-		return (0);
 	map = e->map;
 	while (*map)
 	{
-	 	i = 0;
+		i = 0;
 		while (i < e->width)
 			ft_printf("%i ", (*map)[i++]);
 		ft_printf("\n");
 		map++;
-	}	
+	}
 	return (1);
 }
 
-int		main(int argc, char **argv)
+static int	init_w3d(t_w3d *e)
+{
+	ft_printf("map w: %d & h: %d\n", e->width, e->height);
+	e->pos.x = 22.0;
+	e->pos.y = 12.0;
+	e->dir.x = -1.0;
+	e->dir.y = 0.0;
+	return (0);
+}
+
+int			main(int argc, char **argv)
 {
 	t_w3d		e;
 
 	(void)argc;
 	(void)argv;
 	ft_bzero(&e, sizeof(t_w3d));
-	ft_printf("wolf 3d in progress\n");
+	if (!load_map(&e))
+		return (0);
+	ft_printf("map loaded\n");
 	if (init_env(&e))
 		return (1);
+	init_w3d(&e);
 	ft_printf("env initialized\n");
 	w3d_core(&e);
-	while (1);
+	free_w3d(&e);
 	return (0);
 }

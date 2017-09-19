@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 14:12:45 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/07/21 11:35:32 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/19 12:14:32 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,22 @@ typedef struct			s_w3d
 	void		*win;
 	void		*img;
 	char		*data;
-	int		bpp;
-	int		sizeline;
+	int			bpp;
+	int			sizeline;
 	t_vec		pos;
 	t_vec		dir;
 	t_vec		plane;
-	int		**map;
-	int		width;
+	int			**map;
+	int			width;
+	int			height;
 }				t_w3d;
 /*
 ** 	CORE FUNCTIONS
 */
 int			init_env(t_w3d *e);
-void			put_pxl_img(t_w3d *e, int x, int y, unsigned int c);
+void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c);
 int			load_map(t_w3d *e);
+int			free_w3d(t_w3d *e);
 /*
 ** 	DEBUG FUNCTIONS
 */
