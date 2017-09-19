@@ -26,6 +26,24 @@ typedef struct			s_vec
 	double		x;
 	double		y;
 }				t_vec;
+typedef struct			s_ray
+{
+	int		start;
+	int		end;
+	unsigned int	color;
+}				t_ray;
+typedef struct			s_dda
+{
+	int		mx;
+	int		my;
+	int		side;
+	t_vec		rdir;
+	t_vec		ddst;
+	t_vec		sdst;
+	int		stpx;
+	int		stpy;
+	int		val;
+}				t_dda;
 typedef struct			s_w3d
 {
 	void		*mlx;
@@ -37,6 +55,7 @@ typedef struct			s_w3d
 	t_vec		pos;
 	t_vec		dir;
 	t_vec		plane;
+	double		camx;
 	int			**map;
 	int			width;
 	int			height;
@@ -47,6 +66,8 @@ typedef struct			s_w3d
 int			init_env(t_w3d *e);
 void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c);
 int			load_map(t_w3d *e);
+int			raycasting(t_w3d *e, int iw);
+int			draw_vline(t_w3d *e, t_ray *r, int iw);
 int			free_w3d(t_w3d *e);
 /*
 ** 	DEBUG FUNCTIONS

@@ -40,3 +40,20 @@ void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c)
 	d[1] = (c & 0xFF00) >> 8;
 	d[2] = (c & 0xFF);
 }
+
+int		draw_vline(t_w3d *e, t_ray *r, int iw)
+{
+	int			i;
+
+	i = 0;
+	ft_printf("iw %d [ %d - %d ]\n", iw, r->start, r->end);
+	while (i < W_HEIGHT)
+	{
+		if (i < r->start || i > r->end)
+			put_pxl_img(e, iw, i, 0x353535);
+		else
+			put_pxl_img(e, iw, i, r->color);
+		i++;
+	}
+	return (1);
+}

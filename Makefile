@@ -19,6 +19,7 @@ CFLAGS				= -Wall -Wextra -Werror
 HDR				= includes/wolf3d.h
 SRCS 			= srcs/main.c \
 				srcs/load_map.c \
+				srcs/raycasting.c \
 				srcs/fr33.c \
 				srcs/debug.c \
 				srcs/mlx.c

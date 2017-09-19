@@ -14,18 +14,15 @@
 
 static int	w3d_core(t_w3d *e)
 {
-	int		**map;
 	int		i;
 
-	map = e->map;
-	while (*map)
+	i = 0;
+	while (i < W_WIDTH)
 	{
-		i = 0;
-		while (i < e->width)
-			ft_printf("%i ", (*map)[i++]);
-		ft_printf("\n");
-		map++;
+		raycasting(e, i);
+		i++;
 	}
+	mlx_loop(e->mlx);
 	return (1);
 }
 
