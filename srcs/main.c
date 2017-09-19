@@ -6,13 +6,13 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:17:05 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 12:02:00 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/19 20:00:29 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static int	w3d_core(t_w3d *e)
+int			draw(t_w3d *e)
 {
 	int		i;
 
@@ -22,7 +22,7 @@ static int	w3d_core(t_w3d *e)
 		raycasting(e, i);
 		i++;
 	}
-	mlx_loop(e->mlx);
+	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	return (1);
 }
 
@@ -33,6 +33,8 @@ static int	init_w3d(t_w3d *e)
 	e->pos.y = 12.0;
 	e->dir.x = -1.0;
 	e->dir.y = 0.0;
+	e->plane.x = 0.0;
+	e->plane.y = 0.66;
 	return (0);
 }
 
@@ -50,7 +52,9 @@ int			main(int argc, char **argv)
 		return (1);
 	init_w3d(&e);
 	ft_printf("env initialized\n");
-	w3d_core(&e);
+	draw(&e);
+	mlx_key_hook(e.win, handle_key, (void *)&e);
+	mlx_loop(e.mlx);
 	free_w3d(&e);
 	return (0);
 }

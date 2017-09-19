@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:08:04 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 12:14:27 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/19 19:56:23 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static int	calc_dist_n_height(t_w3d *e, t_dda *g, t_ray *r)
 
 	if (!g->side)
 		d = (g->mx - e->pos.x + (1 - g->stpx) / 2) / g->rdir.x;
-	else		
+	else
 		d = (g->my - e->pos.y + (1 - g->stpy) / 2) / g->rdir.y;
 	wallheight = (int)(W_HEIGHT / d);
 	r->start = W_HEIGHT / 2 - wallheight / 2;
 	r->start = r->start < 0 ? 0 : r->start;
 	r->end = W_HEIGHT / 2 + wallheight / 2;
-	r->end = r->end < 0 ? W_HEIGHT - 1 : r->end;
+	r->end = r->end >= W_HEIGHT ? W_HEIGHT - 1 : r->end;
 	if (g->val == 1)
 		r->color = 0xFF0000;
 	else if (g->val == 2)
@@ -38,6 +38,8 @@ static int	calc_dist_n_height(t_w3d *e, t_dda *g, t_ray *r)
 		r->color = 0x00FFFF; 
 	else
 		r->color = 0xc8c8c8;
+	if (g->side)
+		r->color /= 2;
 	return (1);
 }
 
@@ -60,8 +62,8 @@ static int	dda(t_w3d *e, t_dda *g)
 			g->my += g->stpy;
 			g->side = 1;
 		}
-		if (g->my == e->height || g->mx == e->width
-		|| (g->val = e->map[g->my][g->mx]))
+		if (g->mx == e->height || g->my == e->width
+		|| (g->val = e->map[g->mx][g->my]))
 			hit = 1;
 	}
 	return (1);

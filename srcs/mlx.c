@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:26:09 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/03/27 16:58:36 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/19 17:54:39 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int		draw_vline(t_w3d *e, t_ray *r, int iw)
 	int			i;
 
 	i = 0;
-	ft_printf("iw %d [ %d - %d ]\n", iw, r->start, r->end);
 	while (i < W_HEIGHT)
 	{
 		if (i < r->start || i > r->end)
