@@ -15,7 +15,7 @@
 int			handle_key(int kc, void *data)
 {
 	t_w3d			*e;
-	int				tmp;
+	double			tmp;
 	double			rspd;
 
 	rspd = 0.1;

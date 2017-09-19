@@ -63,7 +63,8 @@ static int	dda(t_w3d *e, t_dda *g)
 			g->side = 1;
 		}
 		if (g->mx == e->height || g->my == e->width
-		|| (g->val = e->map[g->mx][g->my]))
+		|| g->mx < 0 || g->my < 0
+		|| (g->val = e->map[g->mx][g->my]) > 0)
 			hit = 1;
 	}
 	return (1);
@@ -100,7 +101,7 @@ int					raycasting(t_w3d *e, int iw)
 	t_ray		ray;
 	double		camx;
 
-	camx = 2 * iw / (double)e->width - 1;
+	camx = 2.0 * iw / (double)(W_WIDTH) - 1;
 	g.rdir.x = e->dir.x + e->plane.x * camx;
 	g.rdir.y = e->dir.y + e->plane.y * camx;
 	g.mx = (int)e->pos.x;
