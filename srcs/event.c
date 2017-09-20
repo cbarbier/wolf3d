@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 18:00:09 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 19:47:59 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/20 08:36:02 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			handle_key(int kc, void *data)
 		exit(0);
 	}
 	//up = 126 down = 125
-	ft_printf("%i\n", kc);
+//	ft_printf("%i\n", kc);
 	if (kc == 126)
 	{
 		if ((tmp = e->pos.x + e->dir.x) >= 0 && tmp < e->height

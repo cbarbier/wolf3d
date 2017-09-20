@@ -6,7 +6,7 @@
 #    By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/04 14:32:18 by cbarbier          #+#    #+#              #
-#    Updated: 2017/09/19 18:05:53 by cbarbier         ###   ########.fr        #
+#    Updated: 2017/09/20 11:18:15 by cbarbier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ HDR				= includes/wolf3d.h
 SRCS 			= srcs/main.c \
 				srcs/load_map.c \
 				srcs/raycasting.c \
+				srcs/radar.c \
 				srcs/event.c \
 				srcs/fr33.c \
 				srcs/debug.c \

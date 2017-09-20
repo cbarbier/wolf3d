@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:17:05 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 20:00:29 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/20 11:44:01 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int			draw(t_w3d *e)
 		raycasting(e, i);
 		i++;
 	}
+	draw_radar(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	return (1);
 }
@@ -29,6 +30,7 @@ int			draw(t_w3d *e)
 static int	init_w3d(t_w3d *e)
 {
 	ft_printf("map w: %d & h: %d\n", e->width, e->height);
+	put_map(e);
 	e->pos.x = 15.0;
 	e->pos.y = 12.0;
 	e->dir.x = -1.0;
@@ -52,8 +54,10 @@ int			main(int argc, char **argv)
 		return (1);
 	init_w3d(&e);
 	ft_printf("env initialized\n");
-	draw(&e);
-	mlx_key_hook(e.win, handle_key, (void *)&e);
+//	draw(&e);
+//	mlx_key_hook(e.win, handle_key, (void *)&e);
+	mlx_hook(e.win, 2, (1L<<0), &handle_key, (void *)&e);
+	mlx_loop_hook(e.mlx, draw, (void *)&e);
 	mlx_loop(e.mlx);
 	free_w3d(&e);
 	return (0);

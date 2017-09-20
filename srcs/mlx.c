@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:26:09 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 17:54:39 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/20 09:55:22 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c)
 	d[2] = (c & 0xFF);
 }
 
-int		draw_vline(t_w3d *e, t_ray *r, int iw)
+int			draw_vline(t_w3d *e, t_ray *r, int iw)
 {
 	int			i;
 

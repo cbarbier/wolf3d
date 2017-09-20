@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 14:12:45 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 18:24:11 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/20 10:34:17 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,18 @@ typedef struct			s_w3d
 /*
 ** 	CORE FUNCTIONS
 */
-int			init_env(t_w3d *e);
-void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c);
 int			load_map(t_w3d *e);
 int			raycasting(t_w3d *e, int iw);
+int			free_w3d(t_w3d *e);
+/*
+** 	MLX FUNCTIONS
+*/
+int			init_env(t_w3d *e);
+void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c);
 int			draw_vline(t_w3d *e, t_ray *r, int iw);
 int			draw(t_w3d *e);
-int			free_w3d(t_w3d *e);
 int			handle_key(int kc, void *data);
+int			draw_radar(t_w3d *e);
 /*
 ** 	DEBUG FUNCTIONS
 */

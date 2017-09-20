@@ -6,16 +6,16 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:08:04 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 19:56:23 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/20 11:51:24 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
 static int	calc_dist_n_height(t_w3d *e, t_dda *g, t_ray *r)
-{	
+{
 	double		d;
-	int		wallheight;
+	int			wallheight;
 
 	if (!g->side)
 		d = (g->mx - e->pos.x + (1 - g->stpx) / 2) / g->rdir.x;
@@ -33,9 +33,9 @@ static int	calc_dist_n_height(t_w3d *e, t_dda *g, t_ray *r)
 	else if (g->val == 3)
 		r->color = 0x0000FF;
 	else if (g->val == 4)
-		r->color = 0xFFFF00; 
+		r->color = 0xFFFF00;
 	else if (g->val == 5)
-		r->color = 0x00FFFF; 
+		r->color = 0x00FFFF;
 	else
 		r->color = 0xc8c8c8;
 	if (g->side)
@@ -47,7 +47,7 @@ static int	dda(t_w3d *e, t_dda *g)
 {
 	int	hit;
 
-	hit  = 0;
+	hit = 0;
 	while (!hit)
 	{
 		if (g->sdst.x < g->sdst.y)
@@ -70,7 +70,7 @@ static int	dda(t_w3d *e, t_dda *g)
 	return (1);
 }
 
-static int				set_step_n_sdst(t_w3d *e, t_dda *g)
+static int	set_step_n_sdst(t_w3d *e, t_dda *g)
 {
 	if (g->rdir.x < 0)
 	{
@@ -95,7 +95,7 @@ static int				set_step_n_sdst(t_w3d *e, t_dda *g)
 	return (1);
 }
 
-int					raycasting(t_w3d *e, int iw)
+int			raycasting(t_w3d *e, int iw)
 {
 	t_dda		g;
 	t_ray		ray;
