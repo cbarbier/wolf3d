@@ -29,6 +29,7 @@ int			draw(t_w3d *e)
 
 static int	init_w3d(t_w3d *e)
 {
+	init_event(e);
 	ft_printf("map w: %d & h: %d\n", e->width, e->height);
 	put_map(e);
 	e->pos.x = 15.0;
@@ -56,7 +57,7 @@ int			main(int argc, char **argv)
 	ft_printf("env initialized\n");
 //	draw(&e);
 //	mlx_key_hook(e.win, handle_key, (void *)&e);
-	mlx_hook(e.win, 2, (1L<<0), &handle_key, (void *)&e);
+	mlx_hook(e.win, 2, (1L<<0), &handle_event, (void *)&e);
 	mlx_loop_hook(e.mlx, draw, (void *)&e);
 	mlx_loop(e.mlx);
 	free_w3d(&e);

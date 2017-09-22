@@ -21,9 +21,10 @@ SRCS 			= srcs/main.c \
 				srcs/load_map.c \
 				srcs/raycasting.c \
 				srcs/radar.c \
-				srcs/event.c \
+				srcs/manage_event.c \
 				srcs/fr33.c \
 				srcs/debug.c \
+				srcs/f_dir.c \
 				srcs/mlx.c
 
 OBJS			= $(SRCS:.c=.o)
