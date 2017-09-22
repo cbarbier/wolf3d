@@ -12,21 +12,6 @@
 
 #include "wolf3d.h"
 
-int			draw(t_w3d *e)
-{
-	int		i;
-
-	i = 0;
-	while (i < W_WIDTH)
-	{
-		raycasting(e, i);
-		i++;
-	}
-	draw_radar(e);
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-	return (1);
-}
-
 static int	init_w3d(t_w3d *e)
 {
 	init_event(e);
@@ -38,6 +23,8 @@ static int	init_w3d(t_w3d *e)
 	e->dir.y = 0.0;
 	e->plane.x = 0.0;
 	e->plane.y = 0.66;
+	e->horizon = W_HEIGHT / 2;
+	e->sprint_life = SPRINT_LIFE;
 	return (0);
 }
 
@@ -55,15 +42,11 @@ int			main(int argc, char **argv)
 		return (1);
 	init_w3d(&e);
 	ft_printf("env initialized\n");
-//	draw(&e);
-//	mlx_key_hook(e.win, handle_key, (void *)&e);
-	mlx_hook(e.win, 2, (1L<<0), &handle_event, (void *)&e);
-	mlx_loop_hook(e.mlx, draw, (void *)&e);
+	mlx_hook(e.win, 2, (1L<<0), &handle_press, &e);
+	mlx_hook(e.win, 3, (1L<<1), &handle_release, &e);
+//	mlx_key_hook(e.win, &handle_keyclick, &e);
+	mlx_loop_hook(e.mlx, w3d_core, &e);
 	mlx_loop(e.mlx);
 	free_w3d(&e);
 	return (0);
 }
-/*
-	mlx_hook(e.win, 2, (1L<<0), &key_press, &e);
-	mlx_hook(e.win, 3, (1L<<1), &key_release, &e);
-*/

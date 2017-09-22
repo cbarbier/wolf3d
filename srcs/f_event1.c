@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_dir.c                                            :+:      :+:    :+:   */
+/*   f_event1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,11 +16,11 @@ int			f_up(t_w3d *e)
 {
 	double		tmp;
 
-	if ((tmp = e->pos.x + e->dir.x) >= 0 && tmp < e->height
-			&& !e->map[(int)(e->pos.x + e->dir.x)][(int)e->pos.y])
+	if ((tmp = e->pos.x + e->dir.x / e->sprint) >= 0 && tmp < e->height
+			&& !e->map[(int)(tmp)][(int)e->pos.y])
 		e->pos.x = tmp;
-	if ((tmp = e->pos.y + e->dir.y) >= 0 && tmp < e->width
-			&& !e->map[(int)e->pos.x][(int)(e->pos.y + e->dir.y)])
+	if ((tmp = e->pos.y + e->dir.y / e->sprint) >= 0 && tmp < e->width
+			&& !e->map[(int)e->pos.x][(int)(tmp)])
 		e->pos.y = tmp;
 	return (0);
 }
@@ -29,11 +29,11 @@ int			f_down(t_w3d *e)
 {
 	double		tmp;
 
-	if ((tmp = e->pos.x - e->dir.x) >= 0 && tmp < e->height
-			&& !e->map[(int)(e->pos.x - e->dir.x)][(int)e->pos.y])
+	if ((tmp = e->pos.x - e->dir.x / e->sprint) >= 0 && tmp < e->height
+			&& !e->map[(int)(tmp)][(int)e->pos.y])
 		e->pos.x = tmp;
-	if ((tmp = e->pos.y - e->dir.y) >= 0 && tmp < e->width
-			&& !e->map[(int)e->pos.x][(int)(e->pos.y - e->dir.y)])
+	if ((tmp = e->pos.y - e->dir.y / e->sprint) >= 0 && tmp < e->width
+			&& !e->map[(int)e->pos.x][(int)(tmp)])
 		e->pos.y = tmp;
 	return (0);
 }
@@ -43,7 +43,7 @@ int			f_left(t_w3d *e)
 	double		tmp;
 	double		rspd;
 
-	rspd = 0.1;
+	rspd = 0.03;
 	tmp = e->dir.x;
 	e->dir.x = e->dir.x * cos(rspd) - e->dir.y * sin(rspd);
 	e->dir.y = tmp * sin(rspd) + e->dir.y * cos(rspd);
@@ -58,7 +58,7 @@ int			f_right(t_w3d *e)
 	double		tmp;
 	double		rspd;
 
-	rspd = -0.1;
+	rspd = -0.03;
 	tmp = e->dir.x;
 	e->dir.x = e->dir.x * cos(rspd) - e->dir.y * sin(rspd);
 	e->dir.y = tmp * sin(rspd) + e->dir.y * cos(rspd);
@@ -70,6 +70,7 @@ int			f_right(t_w3d *e)
 
 int			f_exit(t_w3d *e)
 {
+	ft_printf("ïn f_exit\n");
 	free_w3d(e);
 	exit(0);
 	return (0);

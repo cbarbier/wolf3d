@@ -25,10 +25,30 @@ int			init_event(t_w3d *e)
 	set_event(e->events + 2, 125, f_down);
 	set_event(e->events + 3, 123, f_left);
 	set_event(e->events + 4, 124, f_right);
+	set_event(e->events + 5, 49, f_jump);
+	set_event(e->events + 6, 1, f_sprint);
 	return (0);
 }
 
-int			handle_event(int kc, void *data)
+int			handle_press(int kc, void *data)
+{
+	t_w3d			*e;
+	int			i;
+
+	e = (t_w3d *)data;
+	i = 0;
+	handle_keyclick(kc, data);
+	while (i < NB_EVENT)
+	{
+		if (e->events[i].keycode == kc)
+			e->events[i].pressed = 1;
+		i++;
+	}
+	ft_printf("keycode %d\n", kc);
+	return (0);
+}
+	
+int			handle_release(int kc, void *data)
 {
 	t_w3d			*e;
 	int			i;
@@ -38,9 +58,36 @@ int			handle_event(int kc, void *data)
 	while (i < NB_EVENT)
 	{
 		if (e->events[i].keycode == kc)
+			e->events[i].pressed = 0;
+		i++;
+	}
+	return (0);
+}
+
+int			apply_event(void *data)
+{
+	t_w3d			*e;
+	int			i;
+
+	e = (t_w3d *)data;
+	i = 0;
+	while (i < NB_EVENT)
+	{
+		if (e->events[i].pressed)
 			e->events[i].f(e);
 		i++;
 	}
-	draw(e);
+	return (0);
+}
+
+int			handle_keyclick(int kc, void *data)
+{
+	t_w3d		*e;
+
+	e = (t_w3d *)data;
+	if (kc == 46)
+		e->minimap = !(e->minimap);
+	else if (kc == 53)
+		f_exit(e);
 	return (0);
 }

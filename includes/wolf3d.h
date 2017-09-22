@@ -20,12 +20,14 @@
 # define NB_THREAD	4
 # define W_WIDTH	800
 # define W_HEIGHT	800
-# define NB_EVENT	5
+# define NB_EVENT	7
+# define SPRINT_LIFE	100
 
 typedef struct s_w3d		t_w3d;
 typedef struct 			s_event
 {
 	int		keycode;
+	int		pressed;
 	int		(*f)(t_w3d *e);
 }				t_event;
 typedef struct			s_vec
@@ -66,11 +68,17 @@ typedef struct			s_w3d
 	int			**map;
 	int			width;
 	int			height;
+	int			minimap;
+	int			horizon;
+	int			jump;
+	double			sprint;
+	int			sprint_life;
 	t_event		events[NB_EVENT];
 }				t_w3d;
 /*
 ** 	CORE FUNCTIONS
 */
+int			w3d_core(t_w3d *e);
 int			load_map(t_w3d *e);
 int			raycasting(t_w3d *e, int iw);
 int			free_w3d(t_w3d *e);
@@ -81,8 +89,10 @@ int			init_env(t_w3d *e);
 int			init_event(t_w3d *e);
 void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c);
 int			draw_vline(t_w3d *e, t_ray *r, int iw);
-int			draw(t_w3d *e);
-int			handle_event(int kc, void *data);
+int			apply_event(void *data);
+int			handle_press(int kc, void *data);
+int			handle_release(int kc, void *data);
+int			handle_keyclick(int kc, void *data);
 int			draw_radar(t_w3d *e);
 /*
 ** 	EVENT FUNCTIONS
@@ -92,6 +102,8 @@ int			f_up(t_w3d *e);
 int			f_down(t_w3d *e);
 int			f_left(t_w3d *e);
 int			f_right(t_w3d *e);
+int			f_jump(t_w3d *e);
+int			f_sprint(t_w3d *e);
 /*
 ** 	DEBUG FUNCTIONS
 */

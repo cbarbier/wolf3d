@@ -24,7 +24,9 @@ SRCS 			= srcs/main.c \
 				srcs/manage_event.c \
 				srcs/fr33.c \
 				srcs/debug.c \
-				srcs/f_dir.c \
+				srcs/f_event1.c \
+				srcs/f_event2.c \
+				srcs/w3d_core.c \
 				srcs/mlx.c
 
 OBJS			= $(SRCS:.c=.o)

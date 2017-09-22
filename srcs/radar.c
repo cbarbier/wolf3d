@@ -54,6 +54,8 @@ int			draw_radar(t_w3d *e)
 	int			**map;
 	int			yp;
 
+	if (e->minimap)
+		return (0);
 	map = e->map;
 	yp = 10;
 	draw_line(e, 0, 6);

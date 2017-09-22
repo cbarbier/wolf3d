@@ -22,9 +22,10 @@ static int	calc_dist_n_height(t_w3d *e, t_dda *g, t_ray *r)
 	else
 		d = (g->my - e->pos.y + (1 - g->stpy) / 2) / g->rdir.y;
 	wallheight = (int)(W_HEIGHT / d);
-	r->start = W_HEIGHT / 2 - wallheight / 2;
+	e->jump = e->events[5].pressed ? 50 : 0;
+	r->start = e->horizon + e->jump - wallheight / 2;
 	r->start = r->start < 0 ? 0 : r->start;
-	r->end = W_HEIGHT / 2 + wallheight / 2;
+	r->end = e->horizon + e->jump + wallheight / 2;
 	r->end = r->end >= W_HEIGHT ? W_HEIGHT - 1 : r->end;
 	if (g->val == 1)
 		r->color = 0xFF0000;
