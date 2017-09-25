@@ -33,6 +33,7 @@ int			w3d_core(t_w3d *e)
 	apply_event(e);
 	draw_raycast(e);
 	draw_radar(e);
+	draw_sprint_bar(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	return (0);
 }

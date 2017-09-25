@@ -21,6 +21,7 @@ SRCS 			= srcs/main.c \
 				srcs/load_map.c \
 				srcs/raycasting.c \
 				srcs/radar.c \
+				srcs/sprint.c \
 				srcs/manage_event.c \
 				srcs/fr33.c \
 				srcs/debug.c \

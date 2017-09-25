@@ -20,7 +20,9 @@ int			f_jump(t_w3d *e)
 
 int			f_sprint(t_w3d *e)
 {
+	if (!e->sprint_life)
+		return (0);
 	e->sprint = 5.0;
-	e->sprint_life--;
+	e->sprint_life -= 0.5;
 	return (0);
 }

@@ -19,9 +19,9 @@
 # define DEBUG		0
 # define NB_THREAD	4
 # define W_WIDTH	800
-# define W_HEIGHT	800
+# define W_HEIGHT	700
 # define NB_EVENT	7
-# define SPRINT_LIFE	100
+# define SPRINT_LIFE	200.0
 
 typedef struct s_w3d		t_w3d;
 typedef struct 			s_event
@@ -72,7 +72,7 @@ typedef struct			s_w3d
 	int			horizon;
 	int			jump;
 	double			sprint;
-	int			sprint_life;
+	double			sprint_life;
 	t_event		events[NB_EVENT];
 }				t_w3d;
 /*
@@ -94,6 +94,7 @@ int			handle_press(int kc, void *data);
 int			handle_release(int kc, void *data);
 int			handle_keyclick(int kc, void *data);
 int			draw_radar(t_w3d *e);
+int			draw_sprint_bar(t_w3d *e);
 /*
 ** 	EVENT FUNCTIONS
 */
