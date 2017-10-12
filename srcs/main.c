@@ -6,11 +6,32 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:17:05 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/20 11:44:01 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/12 15:12:00 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static int	init_tex(t_w3d *e)
+{
+	int		i;
+	int		j;
+	int		xcol;
+
+	i = 0;
+	while (i < TEX_DIM)
+	{
+		j = 0;
+		while (j < TEX_DIM)
+		{
+			xcol = (i * 256 / TEX_DIM) ^ (j * 256 / TEX_DIM);
+			e->tex[j * TEX_DIM + i] = 256 * xcol;
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 static int	init_w3d(t_w3d *e)
 {
@@ -25,6 +46,7 @@ static int	init_w3d(t_w3d *e)
 	e->plane.y = 0.66;
 	e->horizon = W_HEIGHT / 2;
 	e->sprint_life = SPRINT_LIFE;
+	init_tex(e);
 	return (0);
 }
 

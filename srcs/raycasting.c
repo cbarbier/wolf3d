@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:08:04 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/20 11:51:24 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/12 15:21:15 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,7 @@ static int	calc_dist_n_height(t_w3d *e, t_dda *g, t_ray *r)
 	r->start = r->start < 0 ? 0 : r->start;
 	r->end = e->horizon + e->jump + wallheight / 2;
 	r->end = r->end >= W_HEIGHT ? W_HEIGHT - 1 : r->end;
-	if (g->val == 1)
-		r->color = 0xFF0000;
-	else if (g->val == 2)
-		r->color = 0x00FF00;
-	else if (g->val == 3)
-		r->color = 0x0000FF;
-	else if (g->val == 4)
-		r->color = 0xFFFF00;
-	else if (g->val == 5)
-		r->color = 0x00FFFF;
-	else
-		r->color = 0xc8c8c8;
-	if (g->side)
-		r->color /= 2;
+	set_color(e, g, r);
 	return (1);
 }
 

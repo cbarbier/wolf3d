@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 14:12:45 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/20 10:34:17 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/12 15:19:30 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include "../minilibx_macos/mlx.h"
 # include <math.h>
 # include <pthread.h>
-# define DEBUG		0
-# define NB_THREAD	4
-# define W_WIDTH	800
-# define W_HEIGHT	700
-# define NB_EVENT	7
+# define DEBUG			0
+# define NB_THREAD		4
+# define W_WIDTH		800
+# define W_HEIGHT		700
+# define NB_EVENT		7
 # define SPRINT_LIFE	200.0
+# define TEX_DIM		64
 
 typedef struct s_w3d		t_w3d;
 typedef struct 			s_event
@@ -74,6 +75,7 @@ typedef struct			s_w3d
 	double			sprint;
 	double			sprint_life;
 	t_event		events[NB_EVENT];
+	unsigned int	tex[TEX_DIM * TEX_DIM];
 }				t_w3d;
 /*
 ** 	CORE FUNCTIONS
@@ -82,6 +84,7 @@ int			w3d_core(t_w3d *e);
 int			load_map(t_w3d *e);
 int			raycasting(t_w3d *e, int iw);
 int			free_w3d(t_w3d *e);
+int			set_color(t_w3d *e, t_dda *g, t_ray *r);
 /*
 ** 	MLX FUNCTIONS
 */

@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:26:09 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/20 09:55:22 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/12 15:12:58 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ int			draw_vline(t_w3d *e, t_ray *r, int iw)
 	i = 0;
 	while (i < W_HEIGHT)
 	{
-		if (i < r->start || i > r->end)
+		if (i > r->end)
 			put_pxl_img(e, iw, i, 0x353535);
+		else if (i <= r->start)
+			put_pxl_img(e, iw, i, 0xccccff);
 		else
 			put_pxl_img(e, iw, i, r->color);
 		i++;
