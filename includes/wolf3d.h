@@ -20,7 +20,7 @@
 # define NB_THREAD		4
 # define W_WIDTH		800
 # define W_HEIGHT		700
-# define NB_EVENT		7
+# define NB_EVENT		9
 # define SPRINT_LIFE	200.0
 # define TEX_DIM		64
 
@@ -60,6 +60,8 @@ typedef struct			s_w3d
 	void		*win;
 	void		*img;
 	char		*data;
+	void		*sky;
+	char		*dsky;
 	int			bpp;
 	int			sizeline;
 	t_vec		pos;
@@ -76,6 +78,7 @@ typedef struct			s_w3d
 	double			sprint_life;
 	t_event		events[NB_EVENT];
 	unsigned int	tex[TEX_DIM * TEX_DIM];
+	int		exit;
 }				t_w3d;
 /*
 ** 	CORE FUNCTIONS
@@ -108,6 +111,8 @@ int			f_left(t_w3d *e);
 int			f_right(t_w3d *e);
 int			f_jump(t_w3d *e);
 int			f_sprint(t_w3d *e);
+int			f_shft_left(t_w3d *e);
+int			f_shft_right(t_w3d *e);
 /*
 ** 	DEBUG FUNCTIONS
 */

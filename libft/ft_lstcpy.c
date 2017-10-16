@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_lstcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/12 12:31:51 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/03 16:30:40 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/09/26 19:40:14 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+t_list		*ft_lstcpy(t_list *lst, size_t content_size)
 {
-	char			*res;
-	unsigned int	index;
+	t_list			*new;
+	t_list			*tmp;
 
-	if (!s)
-		return (NULL);
-	res = ft_strnew(len);
-	if (!res)
-		return (NULL);
-	index = 0;
-	while (index < len)
+	new = 0;
+	while (lst)
 	{
-		res[index] = s[start + index];
-		index++;
+		if (!(tmp = ft_lstnew(lst->content, content_size)))
+			return (0);
+		ft_lstpushback(&new, tmp);
+		lst = lst->next;
 	}
-	return (res);
+	return (new);
 }

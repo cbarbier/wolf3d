@@ -70,7 +70,6 @@ int			f_right(t_w3d *e)
 
 int			f_exit(t_w3d *e)
 {
-	ft_printf("ïn f_exit\n");
 	free_w3d(e);
 	exit(0);
 	return (0);

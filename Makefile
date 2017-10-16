@@ -38,12 +38,16 @@ all: $(NAME)
 	@echo "( w ) ( o ) ( l ) ( f ) ( - ) ( 3 ) ( D )"
 	@echo " \_/   \_/   \_/   \_/   \_/   \_/   \_/ "
 
-%.o:%.c
+%.o:%.c $(HDR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -Iincludes
 
 $(NAME): $(LIBMLX) $(LIB) $(OBJS) $(HDR)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Llibft -lft $(MLX) 
 	@echo "WOLF3D BUILT\t\t\033[0;32m✓\033[0m"
+
+ifneq ($(shell make -q -C libft;echo $$?), 0)
+.PHONY: $(LIB)
+endif
 
 $(LIB):
 	@make -C libft
@@ -54,6 +58,7 @@ $(LIBMLX):
 
 clean:
 	@/bin/rm -rf $(OBJS)
+	@/bin/rm -rf $(NAME).dSYM
 	@make -C libft clean
 	@make -C minilibx_macos clean
 

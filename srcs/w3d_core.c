@@ -25,11 +25,13 @@ static int			draw_raycast(t_w3d *e)
 	return (1);
 }
 
-
 int			w3d_core(t_w3d *e)
 {
-	if (!e->events[6].pressed)
+	if (e->exit)
+		f_exit(e);
+	if (!e->events[6].pressed || !e->sprint_life)
 		e->sprint = 10.0;
+	ft_memcpy(e->data, e->dsky, 4 * W_WIDTH * W_HEIGHT);
 	apply_event(e);
 	draw_raycast(e);
 	draw_radar(e);

@@ -30,5 +30,9 @@ int			free_w3d(t_w3d *e)
 	free_map(&e->map);
 	if (e->img)
 		mlx_destroy_image(e->mlx, e->img);
+	if (e->sky)
+		mlx_destroy_image(e->mlx, e->sky);
+	if (e->win)
+		mlx_destroy_window(e->mlx, e->win);
 	return (0);
 }
