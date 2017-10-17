@@ -91,5 +91,11 @@ int			handle_keyclick(int kc, void *data)
 		e->exit = 1;
 	else if (kc == 46)
 		e->minimap = !(e->minimap);
+	else if (kc == 35)
+	{
+		e->play = !e->play;
+		system(e->play ? "killall -CONT afplay 2&>/dev/null" :
+			"killall -STOP afplay 2&> /dev/null");
+	}
 	return (0);
 }

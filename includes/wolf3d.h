@@ -79,6 +79,7 @@ typedef struct			s_w3d
 	t_event		events[NB_EVENT];
 	unsigned int	tex[TEX_DIM * TEX_DIM];
 	int		exit;
+	int		play;
 }				t_w3d;
 /*
 ** 	CORE FUNCTIONS

@@ -47,6 +47,9 @@ static int	init_w3d(t_w3d *e)
 	e->horizon = W_HEIGHT / 2;
 	e->sprint_life = SPRINT_LIFE;
 	init_tex(e);
+	e->play = 1;
+	system("killall afplay 2&>/dev/null >/dev/null;afplay \
+		./assets/soundtrack.mp3&");
 	return (0);
 }
 
@@ -58,10 +61,10 @@ int			main(int argc, char **argv)
 	(void)argv;
 	ft_bzero(&e, sizeof(t_w3d));
 	if (!load_map(&e))
-		return (0);
+		return (ft_fprintf(2, "Error: can't load the map\n"));
 	ft_printf("map loaded\n");
 	if (init_env(&e))
-		return (1);
+		return (ft_fprintf(2, "Error: can't init the env\n"));
 	init_w3d(&e);
 	ft_printf("env initialized\n");
 	mlx_hook(e.win, 2, (1L<<0), &handle_press, &e);

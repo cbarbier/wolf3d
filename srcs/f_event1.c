@@ -71,6 +71,7 @@ int			f_right(t_w3d *e)
 int			f_exit(t_w3d *e)
 {
 	free_w3d(e);
+	system("killall afplay 2&>/dev/null >/dev/null");
 	exit(0);
 	return (0);
 }

@@ -55,7 +55,7 @@ int			draw_vline(t_w3d *e, t_ray *r, int iw)
 	while (i < W_HEIGHT)
 	{
 		if (i > r->end)
-			put_pxl_img(e, iw, i, 0x353535);
+			put_pxl_img(e, iw, i, 0xc5c5c5);
 		else if (i > r->start)
 			put_pxl_img(e, iw, i, r->color);
 		i++;
