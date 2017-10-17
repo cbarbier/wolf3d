@@ -38,8 +38,8 @@ static int	init_w3d(t_w3d *e)
 	init_event(e);
 	ft_printf("map w: %d & h: %d\n", e->width, e->height);
 	put_map(e);
-	e->pos.x = 15.0;
-	e->pos.y = 12.0;
+	e->pos.x = 5.0;
+	e->pos.y = 2.0;
 	e->dir.x = -1.0;
 	e->dir.y = 0.0;
 	e->plane.x = 0.0;
