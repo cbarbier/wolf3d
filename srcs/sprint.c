@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:03:21 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/20 16:14:17 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 08:40:09 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int	draw_bar(t_w3d *e, int xp, int energy)
 
 int			draw_sprint_bar(t_w3d *e)
 {
-
 	draw_bar(e, 10, 0);
 	draw_bar(e, 15, (int)(e->sprint_life / 2));
 	return (1);

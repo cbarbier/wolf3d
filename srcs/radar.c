@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 10:03:21 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/20 16:14:17 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 13:56:06 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	draw_line(t_w3d *e, int *map, int yp)
 	while (i <= e->width)
 	{
 		if (i < 0 || i == e->width || !map || map[i])
-				draw_case(e, xp, yp, 0xDD00CC);
+			draw_case(e, xp, yp, 0xDD00CC);
 		xp += 4;
 		i++;
 	}
@@ -65,6 +65,6 @@ int			draw_radar(t_w3d *e)
 		yp += 4;
 	}
 	draw_line(e, 0, yp);
-	draw_case(e, 10 + (int)e->pos.y * 4, 9 + (int)e->pos.x * 4, 0xEEEEEE);
+	draw_case(e, (int)(10 + e->pos.y * 4), (int)(9 + e->pos.x * 4), 0xEEEEEE);
 	return (1);
 }

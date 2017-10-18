@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 12:08:04 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/12 15:21:15 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 13:14:08 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 static int	calc_dist_n_height(t_w3d *e, t_dda *g, t_ray *r)
 {
-	double		d;
-	int			wallheight;
-
 	if (!g->side)
-		d = (g->mx - e->pos.x + (1 - g->stpx) / 2) / g->rdir.x;
+		r->dist = (g->mx - e->pos.x + (1 - g->stpx) / 2) / g->rdir.x;
 	else
-		d = (g->my - e->pos.y + (1 - g->stpy) / 2) / g->rdir.y;
-	wallheight = (int)(W_HEIGHT / d);
+		r->dist = (g->my - e->pos.y + (1 - g->stpy) / 2) / g->rdir.y;
+	r->wallheight = (int)(W_HEIGHT / r->dist);
 	e->jump = e->events[5].pressed ? 50 : 0;
-	r->start = e->horizon + e->jump - wallheight / 2;
+	r->start = e->horizon + e->jump - r->wallheight / 2;
 	r->start = r->start < 0 ? 0 : r->start;
-	r->end = e->horizon + e->jump + wallheight / 2;
+	r->end = e->horizon + e->jump + r->wallheight / 2;
 	r->end = r->end >= W_HEIGHT ? W_HEIGHT - 1 : r->end;
 	set_color(e, g, r);
 	return (1);
@@ -99,6 +96,6 @@ int			raycasting(t_w3d *e, int iw)
 	set_step_n_sdst(e, &g);
 	dda(e, &g);
 	calc_dist_n_height(e, &g, &ray);
-	draw_vline(e, &ray, iw);
+	draw_vline(e, &g, &ray, iw);
 	return (1);
 }

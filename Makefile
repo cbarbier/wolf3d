@@ -6,7 +6,7 @@
 #    By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/04 14:32:18 by cbarbier          #+#    #+#              #
-#    Updated: 2017/10/12 15:19:45 by cbarbier         ###   ########.fr        #
+#    Updated: 2017/10/18 08:43:15 by cbarbier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS 			= srcs/main.c \
 				srcs/coloring.c \
 				srcs/radar.c \
 				srcs/sprint.c \
+				srcs/handlers.c \
 				srcs/manage_event.c \
 				srcs/fr33.c \
 				srcs/debug.c \

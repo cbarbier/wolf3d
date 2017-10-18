@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 15:07:45 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 11:07:05 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 17:06:36 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,18 @@ static int			loadin_to_tab(t_w3d *e, int fd, char *line, int *i)
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
-	return (ret);
+	return (i && ret);
 }
 
-int					load_map(t_w3d *e)
+int					load_map(t_w3d *e, char *file)
 {
 	int		ret;
 	int		fd;
 	char	*line;
 	int		index;
 
-	if ((fd = open("maps/map", O_RDONLY)) == -1)
+	e->file = file;
+	if ((fd = open(e->file ? file : "maps/map", O_RDONLY)) == -1)
 		return (0);
 	index = 0;
 	line = 0;
@@ -90,7 +91,7 @@ int					load_map(t_w3d *e)
 	close(fd);
 	e->height = index;
 	if (!ret)
-		return (1);
+		return (e->width < 100 && e->height < 100);
 	if (!index)
 		return (0);
 	while (index--)

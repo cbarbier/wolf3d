@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:26:09 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 10:34:45 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 17:14:35 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int			put_map(t_w3d *e)
 	int		*tab;
 	int		i;
 
-	map = e->map;
+	if (!DEBUG || !(map = e->map))
+		return (0);
 	while (*map)
 	{
 		tab = *map;

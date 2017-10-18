@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:26:09 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/09/19 10:34:45 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 08:40:51 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static int			draw_raycast(t_w3d *e)
 	return (1);
 }
 
-int			w3d_core(t_w3d *e)
+int					w3d_core(t_w3d *e)
 {
 	if (e->exit)
 		f_exit(e);
 	if (!e->events[6].pressed || !e->sprint_life)
 		e->sprint = 10.0;
-	ft_memcpy(e->data, e->dsky, 4 * W_WIDTH * W_HEIGHT);
+	if (e->sky)
+		ft_memcpy(e->data, e->dsky, 4 * W_WIDTH * W_HEIGHT);
 	apply_event(e);
 	draw_raycast(e);
 	draw_radar(e);

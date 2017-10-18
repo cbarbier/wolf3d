@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:26:09 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/12 15:12:58 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 08:32:52 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,8 @@ int			init_env(t_w3d *e)
 	e->data = mlx_get_data_addr(e->img, &(e->bpp), &(e->sizeline), &ed);
 	h = W_HEIGHT;
 	w = W_WIDTH;
-	e->sky = mlx_xpm_file_to_image(e->mlx, "assets/sky.xpm", &h, &w);
-	e->dsky = mlx_get_data_addr(e->sky, &(e->bpp), &(e->sizeline), &ed);
-	/*
-	mlx_clear_window(e->mlx, e->win);
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
-	mlx_destroy_image(e->mlx, e->img);
-	*/
+	if ((e->sky = mlx_xpm_file_to_image(e->mlx, "assets/sky.xpm", &h, &w)))
+		e->dsky = mlx_get_data_addr(e->sky, &(e->bpp), &(e->sizeline), &ed);
 	return (0);
 }
 
@@ -47,7 +42,7 @@ void		put_pxl_img(t_w3d *e, int x, int y, unsigned int c)
 	d[2] = (c & 0xFF);
 }
 
-int			draw_vline(t_w3d *e, t_ray *r, int iw)
+int			draw_vline(t_w3d *e, t_dda *g, t_ray *r, int iw)
 {
 	int			i;
 
@@ -57,7 +52,12 @@ int			draw_vline(t_w3d *e, t_ray *r, int iw)
 		if (i > r->end)
 			put_pxl_img(e, iw, i, 0xc5c5c5);
 		else if (i > r->start)
+		{
+			apply_tex(e, g, r, i);
 			put_pxl_img(e, iw, i, r->color);
+		}
+		else if (!e->sky)
+			put_pxl_img(e, iw, i, 0x330000);
 		i++;
 	}
 	return (1);

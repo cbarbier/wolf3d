@@ -6,7 +6,7 @@
 /*   By: cbarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 18:17:05 by cbarbier          #+#    #+#             */
-/*   Updated: 2017/10/12 15:12:00 by cbarbier         ###   ########.fr       */
+/*   Updated: 2017/10/18 15:17:06 by cbarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,38 @@ static int	init_tex(t_w3d *e)
 	return (0);
 }
 
+static int	set_start(t_w3d *e)
+{
+	int		i;
+	int		j;
+
+	if (!e->width || !e->height)
+		return (0);
+	j = e->height - 1;
+	while (j)
+	{
+		i = e->width - 1;
+		while (i)
+		{
+			if (!e->map[j][i])
+			{
+				e->pos.x = (double)j;
+				e->pos.y = (double)i;
+				return (1);
+			}
+			i--;
+		}
+		j--;
+	}
+	return (0);
+}
+
 static int	init_w3d(t_w3d *e)
 {
 	init_event(e);
-	ft_printf("map w: %d & h: %d\n", e->width, e->height);
 	put_map(e);
-	e->pos.x = 5.0;
-	e->pos.y = 2.0;
+	if (!set_start(e))
+		return (0);
 	e->dir.x = -1.0;
 	e->dir.y = 0.0;
 	e->plane.x = 0.0;
@@ -48,28 +73,26 @@ static int	init_w3d(t_w3d *e)
 	e->sprint_life = SPRINT_LIFE;
 	init_tex(e);
 	e->play = 1;
-	system("killall afplay 2&>/dev/null >/dev/null;afplay \
-		./assets/soundtrack.mp3&");
-	return (0);
+	system("killall afplay 2>&- 1>&-;test -f assets/sound.mp3 && \
+			afplay assets/sound.mp3&");
+	return (1);
 }
 
 int			main(int argc, char **argv)
 {
 	t_w3d		e;
 
-	(void)argc;
-	(void)argv;
+	if (argc > 2)
+		return (ft_fprintf(2, "Usage: ./wolf3d [file]\n"));
 	ft_bzero(&e, sizeof(t_w3d));
-	if (!load_map(&e))
+	if (!load_map(&e, argv[1]))
 		return (ft_fprintf(2, "Error: can't load the map\n"));
 	ft_printf("map loaded\n");
-	if (init_env(&e))
+	if (init_env(&e) || !init_w3d(&e))
 		return (ft_fprintf(2, "Error: can't init the env\n"));
-	init_w3d(&e);
 	ft_printf("env initialized\n");
-	mlx_hook(e.win, 2, (1L<<0), &handle_press, &e);
-	mlx_hook(e.win, 3, (1L<<1), &handle_release, &e);
-//	mlx_key_hook(e.win, &handle_keyclick, &e);
+	mlx_hook(e.win, 2, (1L << 0), &handle_press, &e);
+	mlx_hook(e.win, 3, (1L << 1), &handle_release, &e);
 	mlx_loop_hook(e.mlx, w3d_core, &e);
 	mlx_loop(e.mlx);
 	free_w3d(&e);
